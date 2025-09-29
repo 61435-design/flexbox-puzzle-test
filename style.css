@@ -1,36 +1,46 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    background: #f4f4f4;
+:root{
+  --gap:8px;
+  --bg:#f2f6fb;
+  --card:#fff;
+  --accent:#0366d6;
 }
-
-header {
-    padding: 20px;
-    background: #333;
-    color: white;
+body{
+  margin:20px;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+  background:linear-gradient(180deg,var(--bg),#fff);
+  color:#111;
 }
-
-.puzzle {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 5px;
-    width: 80%;
-    margin: auto;
-    padding: 20px;
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+h1{font-size:20px;margin:0}
+.controls{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+button{
+  background:var(--accent);color:#fff;border:0;padding:8px 10px;border-radius:8px;
+  cursor:pointer;font-weight:600;
 }
-
-.puzzle img, .extra-piece img {
-    width: 100%;
-    cursor: grab;
-    border: 2px solid #ccc;
+button.secondary{background:#6b7280}
+.info{font-size:13px;color:#333}
+#boardWrap{max-width:980px;margin:18px auto;padding:16px;background:var(--card);border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.06)}
+#board{
+  display:grid;
+  gap:var(--gap);
+  justify-content:center;
+  align-content:start;
 }
-
-.extra-piece {
-    margin-top: 20px;
+.cell{
+  background:#eee;border-radius:6px;overflow:hidden;position:relative;
+  display:flex;align-items:center;justify-content:center;
+  user-select:none;
+  min-width:80px;min-height:80px;
 }
-
-.extra-piece img {
-    width: 200px;
+.cell img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.drag-label{
+  position:fixed;z-index:9999;padding:6px 10px;background:rgba(0,0,0,0.75);
+  color:#fff;border-radius:6px;font-size:13px;pointer-events:none;transform:translate(-50%,-120%);
+  display:none;
+}
+.cell.dragging{opacity:0.4;outline:3px dashed rgba(3,102,214,0.6)}
+.cell.over{outline:3px solid rgba(3,102,214,0.14)}
+.footer{margin-top:12px;color:#444;font-size:13px}
+@media (min-width:720px){
+  .cell{min-width:140px;min-height:140px}
 }
